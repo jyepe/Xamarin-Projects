@@ -17,7 +17,8 @@ namespace Hello_World
 
         private void MainButtonClicked(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            var userName = NameEntry.Text;
+            Label.Text = "Hello " + userName;
         }
     }
 }

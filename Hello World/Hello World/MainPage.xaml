@@ -4,8 +4,8 @@
              x:Class="Hello_World.MainPage">
 
     <StackLayout BackgroundColor="Blue" Margin="15">
-        <Label Text="Hello World" />
-        <Entry Placeholder="Some text" />
+        <Label x:Name="Label" Text="Hello World" />
+        <Entry x:Name="NameEntry" Placeholder="Write your name here" />
         <Button Text="Click me!" Clicked="MainButtonClicked" />
     </StackLayout>
 
