@@ -23,7 +23,7 @@ namespace TravelRecord
 
             if (String.IsNullOrEmpty(userName) || String.IsNullOrEmpty(password))
             {
-               
+                DisplayAlert("Error", "Username or password incorrect", "Ok");
             }
             else
             {
@@ -33,7 +33,7 @@ namespace TravelRecord
 
         private void SignUpButton_OnClicked(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Navigation.PushAsync(new SignUpPage());
         }
     }
 }
