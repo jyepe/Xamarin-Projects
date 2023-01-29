@@ -28,5 +28,17 @@ namespace TravelRecord
             con.Close();
             PostListView.ItemsSource = posts;
         }
+
+        private void PostListView_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (PostListView.SelectedItem is Post selectedItem)
+            {
+                Navigation.PushAsync(new PostDetailsPage(selectedItem));
+            }
+            else
+            {
+                
+            }
+        }
     }
 }
