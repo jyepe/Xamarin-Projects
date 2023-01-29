@@ -4,6 +4,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
+using Xamarin;
 using Environment = System.Environment;
 
 namespace TravelRecord.Droid
@@ -17,6 +18,7 @@ namespace TravelRecord.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            FormsMaps.Init(this, savedInstanceState);
             var dbName = "travel_db.sqlite";
             var folderPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             var fullPath = Path.Combine(folderPath, dbName);
