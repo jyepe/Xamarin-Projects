@@ -16,7 +16,7 @@ namespace TravelRecord
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MapPage : ContentPage
     {
-        private IGeolocator _locator = CrossGeolocator.Current;
+        private readonly IGeolocator _locator = CrossGeolocator.Current;
 
         public MapPage()
         {
