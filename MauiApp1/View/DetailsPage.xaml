@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:MauiApp1.ViewModel"
+             xmlns:buttons="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
+             x:Class="MauiApp1.View.DetailsPage"
+             x:DataType="viewmodel:MonkeyDetailsViewModel"
+             Title="{Binding Monkey.Name}">
+
+    <ScrollView>
+        <VerticalStackLayout>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="160" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <BoxView
+                    Grid.RowSpan="3"
+                    HorizontalOptions="Fill"
+                    HeightRequest="160"/>
+
+                <Frame 
+                    Grid.RowSpan="2"
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Margin="0,80,0,0"
+                    HeightRequest="160"
+                    WidthRequest="160"
+                    HorizontalOptions="Center"
+                    Padding="0"
+                    IsClippedToBounds="True"
+                    CornerRadius="80">
+                    <Image Aspect="AspectFill"
+                           HeightRequest="160"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Source="{Binding Monkey.Image}"
+                           WidthRequest="160">
+
+                    </Image>
+                </Frame>
+            </Grid>
+            <VerticalStackLayout>
+
+                <buttons:SfButton Text="Show On Map"
+                                  TextColor="White"
+                                  Command="{Binding OpenMapCommand}"/>
+
+                <Label Text="{Binding Monkey.Details}"/>
+                <Label Text="{Binding Monkey.Location, StringFormat='Location: {0}'}"/>
+                <Label Text="{Binding Monkey.Population, StringFormat='Population: {0}'}"/>
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

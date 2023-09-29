@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:MauiApp1.Model"
+             x:Class="MauiApp1.MainPage"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
+             xmlns:core="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             xmlns:viewmodel="clr-namespace:MauiApp1.ViewModel"
+             xmlns:buttons="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
+             x:DataType="viewmodel:MonkeysViewModel"
+             Title="{Binding Title}">
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <RefreshView Grid.Column="0"
+                     Grid.ColumnSpan="2"
+                     Grid.Row="0"
+                     Command="{Binding LoadMonkeysCommand}"
+                     IsRefreshing="{Binding IsRefreshing}">
+
+            <syncfusion:SfListView 
+                               IsScrollingEnabled="True"
+                               ItemSpacing="5"
+                               ItemsSource="{Binding Monkeys}"
+                               ScrollBarVisibility="Always"
+                               SelectionMode="Single"
+                               SelectionGesture="Tap"
+                               SelectedItem="{Binding SelectedMonkey, Mode=TwoWay}"
+                               SelectionChangedCommand="{Binding MonkeySelectedCommand}"
+                               EmptyView="No monkeys">
+
+            <syncfusion:SfListView.ItemTemplate>
+                <DataTemplate x:DataType="model:Monkey">
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.RowSpan="2" Source="{Binding Image}"
+                               Aspect="AspectFill"
+                               HeightRequest="60" 
+                               WidthRequest="60" />
+
+                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}" FontAttributes="Bold" />
+                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding Location}" FontAttributes="Italic"  />
+                    </Grid>
+                </DataTemplate>
+            </syncfusion:SfListView.ItemTemplate>
+
+        </syncfusion:SfListView>
+        </RefreshView>
+
+        <buttons:SfButton Grid.Column="0"
+                          Grid.Row="1" 
+                          Text="Get Monkeys"
+                          TextColor="White"
+                          Command="{Binding LoadMonkeysCommand}"
+                          IsEnabled="{Binding IsNotBusy}"/>
+
+        <buttons:SfButton Grid.Column="1" 
+                          Grid.Row="1" 
+                          Text="Get Closest Monkey"
+                          TextColor="White"
+                          Command="{Binding GetClosestMonkeyCommand}"
+                          IsEnabled="{Binding IsNotBusy}"/>
+
+        <core:SfBusyIndicator Grid.Column="0" Grid.Row="0"
+                              Grid.ColumnSpan="2"
+                              Grid.RowSpan="2"
+                              IsRunning = "{Binding IsBusy}"
+                              IsVisible = "{Binding IsBusy}"
+                              AnimationType="CircularMaterial"/>
+    </Grid>
+
+
+</ContentPage>
